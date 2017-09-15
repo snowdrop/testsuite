@@ -19,11 +19,11 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
+<!--  <parent>
     <groupId>org.jboss.snowdrop</groupId>
     <artifactId>spring-boot-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-  </parent>
+  </parent>-->
 
   <groupId>org.jboss.snowdrop.testsuite</groupId>
   <artifactId>testsuite-parent</artifactId>
@@ -38,6 +38,7 @@
     <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
     <rest-assured.version>2.9.0</rest-assured.version>
     <openshift-test-utils.version>2</openshift-test-utils.version>
+    <spring-boot-bom.version>1.4.1-SNAPSHOT</spring-boot-bom.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
     <fabric8.skip>true</fabric8.skip>
@@ -58,9 +59,11 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.jboss.snowdrop.testsuite</groupId>
-        <artifactId>common-utils</artifactId>
-        <version>${project.version}</version>
+        <groupId>me.snowdrop</groupId>
+        <artifactId>spring-boot-bom</artifactId>
+        <version>${spring-boot-bom.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
       </dependency>
       <dependency>
         <groupId>com.jayway.restassured</groupId>
