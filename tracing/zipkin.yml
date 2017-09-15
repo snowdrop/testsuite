@@ -1,0 +1,265 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: zipkin
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/image.dockerRepositoryCheck: 2017-02-25T08:00:06Z
+    creationTimestamp: null
+    generation: 2
+    labels:
+      app: zipkin
+    name: zipkin
+  spec:
+    tags:
+    - annotations:
+        openshift.io/imported-from: openzipkin/zipkin
+      from:
+        kind: DockerImage
+        name: 172.30.65.239:5000/spring/zipkin:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    generation: 2
+    labels:
+      app: zipkin
+    name: zipkin
+  spec:
+    replicas: 1
+    selector:
+      app: zipkin
+      deploymentconfig: zipkin
+    strategy:
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/container.zipkin.image.entrypoint: '["/bin/sh","-c","test -n
+            \"$STORAGE_TYPE\" \u0026\u0026 source .${STORAGE_TYPE}_profile; java ${JAVA_OPTS}
+            -cp . org.springframework.boot.loader.JarLauncher"]'
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: zipkin
+          deploymentconfig: zipkin
+      spec:
+        containers:
+        - image: openzipkin/zipkin@sha256:6ecbee08d36eb1e8c7ee84be5667d145fdc926f77460d43e127ac66184d37cf3
+          imagePullPolicy: Always
+          name: zipkin
+          ports:
+          - containerPort: 9410
+            protocol: TCP
+          - containerPort: 9411
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - zipkin
+        from:
+          kind: ImageStreamTag
+          name: zipkin:latest
+          namespace: spring
+      type: ImageChange
+  status:
+    availableReplicas: 1
+    observedGeneration: 2
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: v1
+  kind: ReplicationController
+  metadata:
+    annotations:
+      openshift.io/deployer-pod.name: zipkin-1-deploy
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: zipkin
+      openshift.io/deployment.phase: Complete
+      openshift.io/deployment.replicas: "1"
+      openshift.io/deployment.status-reason: caused by an image change
+      openshift.io/encoded-deployment-config: |
+        {"kind":"DeploymentConfig","apiVersion":"v1","metadata":{"name":"zipkin","namespace":"spring","selfLink":"/oapi/v1/namespaces/spring/deploymentconfigs/zipkin","uid":"6b5709a8-fb30-11e6-b3eb-beeffeed003a","resourceVersion":"604643","generation":2,"creationTimestamp":"2017-02-25T08:00:05Z","labels":{"app":"zipkin"},"annotations":{"openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"strategy":{"type":"Rolling","rollingParams":{"updatePeriodSeconds":1,"intervalSeconds":1,"timeoutSeconds":600,"maxUnavailable":"25%","maxSurge":"25%"},"resources":{}},"triggers":[{"type":"ConfigChange"},{"type":"ImageChange","imageChangeParams":{"automatic":true,"containerNames":["zipkin"],"from":{"kind":"ImageStreamTag","namespace":"spring","name":"zipkin:latest"},"lastTriggeredImage":"openzipkin/zipkin@sha256:6ecbee08d36eb1e8c7ee84be5667d145fdc926f77460d43e127ac66184d37cf3"}}],"replicas":1,"test":false,"selector":{"app":"zipkin","deploymentconfig":"zipkin"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"zipkin","deploymentconfig":"zipkin"},"annotations":{"openshift.io/container.zipkin.image.entrypoint":"[\"/bin/sh\",\"-c\",\"test -n \\\"$STORAGE_TYPE\\\" \\u0026\\u0026 source .${STORAGE_TYPE}_profile; java ${JAVA_OPTS} -cp . org.springframework.boot.loader.JarLauncher\"]","openshift.io/generated-by":"OpenShiftNewApp"}},"spec":{"containers":[{"name":"zipkin","image":"openzipkin/zipkin@sha256:6ecbee08d36eb1e8c7ee84be5667d145fdc926f77460d43e127ac66184d37cf3","ports":[{"containerPort":9410,"protocol":"TCP"},{"containerPort":9411,"protocol":"TCP"}],"resources":{},"terminationMessagePath":"/dev/termination-log","imagePullPolicy":"Always"}],"restartPolicy":"Always","terminationGracePeriodSeconds":30,"dnsPolicy":"ClusterFirst","securityContext":{}}}},"status":{"latestVersion":1,"observedGeneration":1,"details":{"message":"caused by an image change","causes":[{"type":"ImageChange","imageTrigger":{"from":{"kind":"ImageStreamTag","namespace":"spring","name":"zipkin:latest"}}}]}}}
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: zipkin
+      openshift.io/deployment-config.name: zipkin
+    name: zipkin-1
+  spec:
+    replicas: 1
+    selector:
+      app: zipkin
+      deployment: zipkin-1
+      deploymentconfig: zipkin
+    template:
+      metadata:
+        annotations:
+          openshift.io/container.zipkin.image.entrypoint: '["/bin/sh","-c","test -n
+            \"$STORAGE_TYPE\" \u0026\u0026 source .${STORAGE_TYPE}_profile; java ${JAVA_OPTS}
+            -cp . org.springframework.boot.loader.JarLauncher"]'
+          openshift.io/deployment-config.latest-version: "1"
+          openshift.io/deployment-config.name: zipkin
+          openshift.io/deployment.name: zipkin-1
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: zipkin
+          deployment: zipkin-1
+          deploymentconfig: zipkin
+      spec:
+        containers:
+        - image: openzipkin/zipkin@sha256:6ecbee08d36eb1e8c7ee84be5667d145fdc926f77460d43e127ac66184d37cf3
+          imagePullPolicy: Always
+          name: zipkin
+          ports:
+          - containerPort: 9411
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    replicas: 0
+- apiVersion: v1
+  kind: Route
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: zipkin
+    name: zipkin
+  spec:
+    host: zipkin.spring.ocp.cloud.lab.eng.bos.redhat.com
+    port:
+      targetPort: 9411-tcp
+    to:
+      kind: Service
+      name: zipkin
+      weight: 100
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: 2017-02-25T08:05:21Z
+        status: "True"
+        type: Admitted
+      host: zipkin.spring.ocp.cloud.lab.eng.bos.redhat.com
+      routerName: router
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: zipkin
+    name: zipkin
+  spec:
+    ports:
+    - name: 9411-tcp
+      port: 9411
+      protocol: TCP
+      targetPort: 9411
+    selector:
+      app: zipkin
+      deploymentconfig: zipkin
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubernetes.io/created-by: |
+        {"kind":"SerializedReference","apiVersion":"v1","reference":{"kind":"ReplicationController","namespace":"spring","name":"zipkin-1","uid":"6bbf9756-fb30-11e6-b3eb-beeffeed003a","apiVersion":"v1","resourceVersion":"604663"}}
+      openshift.io/container.zipkin.image.entrypoint: '["/bin/sh","-c","test -n \"$STORAGE_TYPE\"
+        \u0026\u0026 source .${STORAGE_TYPE}_profile; java ${JAVA_OPTS} -cp . org.springframework.boot.loader.JarLauncher"]'
+      openshift.io/deployment-config.latest-version: "1"
+      openshift.io/deployment-config.name: zipkin
+      openshift.io/deployment.name: zipkin-1
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/scc: restricted
+    creationTimestamp: null
+    generateName: zipkin-1-
+    labels:
+      app: zipkin
+      deployment: zipkin-1
+      deploymentconfig: zipkin
+  spec:
+    containers:
+    - image: openzipkin/zipkin@sha256:6ecbee08d36eb1e8c7ee84be5667d145fdc926f77460d43e127ac66184d37cf3
+      imagePullPolicy: Always
+      name: zipkin
+      ports:
+      - containerPort: 9410
+        protocol: TCP
+      - containerPort: 9411
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          drop:
+          - KILL
+          - MKNOD
+          - SETGID
+          - SETUID
+          - SYS_CHROOT
+        privileged: false
+        runAsUser: 1000080000
+        seLinuxOptions:
+          level: s0:c9,c4
+      terminationMessagePath: /dev/termination-log
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-e16z1
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    host: spring-ocp-node1.cloud.lab.eng.bos.redhat.com
+    imagePullSecrets:
+    - name: default-dockercfg-qdgzu
+    nodeName: spring-ocp-node1.cloud.lab.eng.bos.redhat.com
+    nodeSelector:
+      type: spring
+    restartPolicy: Always
+    securityContext:
+      fsGroup: 1000080000
+      seLinuxOptions:
+        level: s0:c9,c4
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    volumes:
+    - name: default-token-e16z1
+      secret:
+        secretName: default-token-e16z1
+  status:
+    phase: Pending

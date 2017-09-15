@@ -1,0 +1,132 @@
+:doctype: book
+:toc: left
+:toclevels: 3
+:toc-position: left
+:numbered:
+
+= Spring Boot Testsuite
+
+== Instructions
+
+Steps to execute the test suite are:
+
+1) Login to Open Shift
+----
+oc login $(minishift console --url) -u admin -p admin
+----
+
+2) Grant permissions for config map
+----
+oc policy add-role-to-user view -n $(oc project -q) -z default
+----
+
+3) Execute tests
+----
+mvn clean verify -Popenshift
+----
+
+== Use cases to be investigated
+
+* Health Check (OpenShift+Spring Boot Actuator)
+* Kubernetes ConfigMap for configuration
+
+* Server-side load balancing (Kube/OpenShift).
+* Kubernetes/DNS for service registration/discovery (+ ribbon backed by Kube with one IP?)
+  If multiple endpoints are registered, they will be used for loadbalancing by ribbon (https://github.com/fabric8io/spring-cloud-kubernetes#ribbon-discovery-in-kubernetes)
+
+* Hystrix + Turbine Server to stream info reported by the Services Circuit Checked (= Hystrix Circuit Breaker pattern)
+* Logging (EFK)
+
+== Future version of Obsidian.next
+
+* Zipkin (https://github.com/fabric8io/kubernetes-zipkin) till Hawkular (APM) + CloudForms are ready / https://cloud.spring.io/spring-cloud-sleuth/
+* Zuul : On OpenShift : APi Manager + Apiman Gateway should be the way to go
+
+== REST Service with Apache Tomcat
+
+* Component : https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters/spring-boot-starter-web[Spring Boot Starter Web], https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters/spring-boot-starter-tomcat[Spring Boot Starter Web Tomcat]
+* Framework : Spring Web, Spring Web MVC
+* Container : Apache Tomcat
+
+**Description**
+
+A REST endpoint is exposed by Spring Boot using as Java Web Container Apache Tomcat. The REST endpoint `/greeting` returns a message to say hello world with an id which is increment
+for each call.
+
+----
+http http://localhost:8080/greeting
+HTTP/1.1 200
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 23 Feb 2017 08:11:08 GMT
+Transfer-Encoding: chunked
+
+{
+    "content": "Hello, World!",
+    "id": 1
+}
+----
+
+== REST Service using Apache CXF
+
+* Component : https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters/spring-boot-starter-tomcat[Spring Boot Starter Web Tomcat]
+* Framework : Apache CXF - 3.1.10
+* Container : Apache Tomcat
+
+This use case is based on the same logic as `REST Service with Apache Tomcat` but it uses as starter `Spring Boot Starter - Apache CXF`. To let
+Apache CXF to discover the services and register the REST application, the property `cxf -> jaxrs` has been added within the `application.properties`
+file in order to tell to the framework to discover and register the REST endpoints
+
+----
+cxf:
+  jaxrs:
+    component-scan: true
+----
+
+== JPA with Spring Data repositories
+
+* Component: https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters/spring-boot-starter-data-jpa[Spring Boot Starter Data JPA] and https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters/spring-boot-starter-data-rest[Spring Boot Starter Data Rest].
+* Framework: Hibernate
+
+**Description**
+
+The goal of this use case is to setup a CRUD service talking to a H2 database where the model is defined with the common entities https://github.com/obsidian-toaster/springboot-testsuite/tree/master/common/src/main/java/org/jboss/snowdrop/common/domain[here].
+At run time, an in memory H2 database is created, some records imported using an import.sql file.
+The CRUD services will be generated automatically.
+
+References:
+
+- https://spring.io/guides/gs/accessing-data-jpa[Spring How To guide]
+- https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html[Spring Boot doc]
+- http://blog.anthavio.net/2016/03/fun-with-spring-boot-auto-configuration.html[DataSource configuration]
+
+== JPA with Hibernate
+
+* Component: https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters/spring-boot-starter-data-jpa[Spring Boot Starter Data JPA].
+* Framework: Hibernate
+
+The goal of this use case is to setup a CRUD service talking to a H2 database where the model is defined with the common entities https://github.com/obsidian-toaster/springboot-testsuite/tree/master/common/src/main/java/org/jboss/snowdrop/common/domain[here].
+At run time, an in memory H2 database is created, some records imported using an import.sql file.
+A Service class will contain the CRUD methods. No transaction support is required.
+
+== Health Check
+
+* Component: https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters/spring-boot-starter-actuator[Spring Boot Starter Actuator]
+
+The goal of this use case is to verify health endpoint exposed by the Spring Boot Actuator. In a local test case healthy and unhealthy statuses are verified using a custom health indicator.
+In an OpenShift test case only healthy status is verified, because otherwise pod wouldn't start or would be restarted.
+
+== Ribbon
+
+* Component: https://github.com/spring-cloud/spring-cloud-netflix/tree/master/spring-cloud-starter-ribbon[Spring Cloud Starter Ribbon]
+* Framework: Netflix Ribbon, Fabric8 Spring Cloud Kubernetes
+
+== Circuit Breaker
+
+* Hystrix
+
+= Obsidian.Next
+
+== Tracing
+
+* Component: https://github.com/spring-cloud/spring-cloud-sleuth[Sleuth]
+* Framework: Zipkin

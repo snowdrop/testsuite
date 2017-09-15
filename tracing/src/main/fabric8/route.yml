@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: sleuth
+spec:
+  host: sleuth.spring.ocp.cloud.lab.eng.bos.redhat.com
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: sleuth
