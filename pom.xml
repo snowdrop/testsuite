@@ -19,13 +19,12 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-<!--  <parent>
-    <groupId>org.jboss.snowdrop</groupId>
-    <artifactId>spring-boot-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>-->
-
-  <groupId>org.jboss.snowdrop.testsuite</groupId>
+  <parent>
+    <groupId>io.openshift</groupId>
+    <artifactId>booster-parent</artifactId>
+    <version>10</version>
+  </parent>
+  <groupId>me.snowdrop</groupId>
   <artifactId>testsuite-parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -39,15 +38,14 @@
     <rest-assured.version>2.9.0</rest-assured.version>
     <openshift-test-utils.version>2</openshift-test-utils.version>
     <spring-boot-bom.version>1.4.1-SNAPSHOT</spring-boot-bom.version>
+    <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
     <fabric8.skip>true</fabric8.skip>
-    <java.version>1.8</java.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
   </properties>
 
   <modules>
+    <module>common</module>
     <module>data-jdbc</module>
     <module>data-jpa</module>
     <module>health-check</module>
@@ -55,7 +53,6 @@
     <module>rest</module>
     <module>rest-cxf</module>
     <module>circuit-breaker-ribbon</module>
-    <module>common</module>
     <!--<module>ribbon</module>-->
   </modules>
 
@@ -83,6 +80,16 @@
         <artifactId>openshift-test-utils</artifactId>
         <version>${openshift-test-utils.version}</version>
       </dependency>
+      <dependency>
+        <groupId>me.snowdrop</groupId>
+        <artifactId>common-entities</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>me.snowdrop</groupId>
+        <artifactId>common-utils</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -99,39 +106,40 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <configLocation>wildfly-checkstyle/checkstyle.xml</configLocation>
-          <consoleOutput>true</consoleOutput>
-          <failsOnError>true</failsOnError>
-          <includeTestSourceDirectory>true</includeTestSourceDirectory>
-          <excludes>**/*$logger.java,**/*$bundle.java</excludes>
-          <useFile/>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.wildfly.checkstyle</groupId>
-            <artifactId>wildfly-checkstyle-config</artifactId>
-            <version>${checkstyle-config.version}</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>check-style</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>checkstyle</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+      <!--<plugin>-->
+      <!--<groupId>org.apache.maven.plugins</groupId>-->
+      <!--<artifactId>maven-checkstyle-plugin</artifactId>-->
+      <!--<configuration>-->
+      <!--<configLocation>wildfly-checkstyle/checkstyle.xml</configLocation>-->
+      <!--<consoleOutput>true</consoleOutput>-->
+      <!--<failsOnError>true</failsOnError>-->
+      <!--<includeTestSourceDirectory>true</includeTestSourceDirectory>-->
+      <!--<excludes>**/*$logger.java,**/*$bundle.java</excludes>-->
+      <!--<useFile/>-->
+      <!--</configuration>-->
+      <!--<dependencies>-->
+      <!--<dependency>-->
+      <!--<groupId>org.wildfly.checkstyle</groupId>-->
+      <!--<artifactId>wildfly-checkstyle-config</artifactId>-->
+      <!--<version>${checkstyle-config.version}</version>-->
+      <!--</dependency>-->
+      <!--</dependencies>-->
+      <!--<executions>-->
+      <!--<execution>-->
+      <!--<id>check-style</id>-->
+      <!--<phase>compile</phase>-->
+      <!--<goals>-->
+      <!--<goal>checkstyle</goal>-->
+      <!--</goals>-->
+      <!--</execution>-->
+      <!--</executions>-->
+      <!--</plugin>-->
     </plugins>
   </build>
 
