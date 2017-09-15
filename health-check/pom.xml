@@ -34,6 +34,12 @@
       <artifactId>common-utils</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- Apache Tomcat Dependency required -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-juli</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
