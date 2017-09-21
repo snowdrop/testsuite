@@ -64,7 +64,7 @@
       <artifactId>spring-cloud-starter-hystrix</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.fabric8</groupId>
+      <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-kubernetes-netflix</artifactId>
     </dependency>
     <dependency>
