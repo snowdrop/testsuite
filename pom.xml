@@ -95,6 +95,19 @@
         <version>4.12</version>
         <scope>test</scope>
       </dependency>
+      <!-- TODO - To be changed when we will switch to Arquillian Cube as we have version conflicts with Fabric8 Kuber Client 2 which is imported -->
+      <dependency>
+        <groupId>io.fabric8</groupId>
+        <artifactId>kubernetes-client</artifactId>
+        <version>1.4.34</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.fabric8</groupId>
+        <artifactId>openshift-client</artifactId>
+        <version>1.4.34</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
