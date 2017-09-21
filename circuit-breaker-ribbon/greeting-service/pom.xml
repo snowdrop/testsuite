@@ -72,11 +72,6 @@
       <artifactId>okhttp</artifactId>
       <version>3.6.0</version><!-- TODO move to parent -->
     </dependency>
-    <!-- Apache Tomcat Dependency required -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-juli</artifactId>
-    </dependency>
 
     <!-- Test dependencies -->
     <dependency>
@@ -93,11 +88,6 @@
     <dependency>
       <groupId>io.openshift</groupId>
       <artifactId>openshift-test-utils</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
 
