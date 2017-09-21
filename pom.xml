@@ -32,7 +32,7 @@
     <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
     <rest-assured.version>2.9.0</rest-assured.version>
     <openshift-test-utils.version>2</openshift-test-utils.version>
-    <spring-boot-bom.version>1.5.4-SNAPSHOT</spring-boot-bom.version>
+    <spring-boot-bom.version>1.5.7-SNAPSHOT</spring-boot-bom.version>
     <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
@@ -86,6 +86,14 @@
         <groupId>me.snowdrop</groupId>
         <artifactId>common-utils</artifactId>
         <version>${project.version}</version>
+      </dependency>
+
+      <!-- Testing -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
