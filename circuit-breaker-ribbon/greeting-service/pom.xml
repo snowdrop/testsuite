@@ -34,18 +34,6 @@
     <fabric8.skip>false</fabric8.skip>
   </properties>
 
-  <dependencyManagement>
-    <dependencies><!-- TODO move to parent -->
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Camden.SR5</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -67,10 +55,12 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-kubernetes-netflix</artifactId>
     </dependency>
+
+    <!-- TODO move to parent -->
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
-      <version>3.6.0</version><!-- TODO move to parent -->
+      <version>3.6.0</version>
     </dependency>
 
     <!-- Test dependencies -->
@@ -88,6 +78,11 @@
     <dependency>
       <groupId>io.openshift</groupId>
       <artifactId>openshift-test-utils</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
 
