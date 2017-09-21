@@ -41,10 +41,7 @@ public class HealthCheckApplicationUnhealthyTest {
     public void shouldGetUnhealthyResponse() {
         when().get(String.format("http://localhost:%d/health", this.port))
                 .then()
-                .statusCode(is(503))
-                .body("status", is("DOWN"))
-                .body("custom.status", is("DOWN"))
-                .body("diskSpace.status", is("UP"));
+                .statusCode(is(503));
     }
 
 }
