@@ -76,13 +76,12 @@
     <dependency>
       <groupId>io.openshift</groupId>
       <artifactId>openshift-test-utils</artifactId>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 </project>
