@@ -55,12 +55,10 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-kubernetes-netflix</artifactId>
     </dependency>
-
-    <!-- TODO move to parent -->
+    <!-- TODO Pod creation failed without this GAV -->
     <dependency>
-      <groupId>com.squareup.okhttp3</groupId>
-      <artifactId>okhttp</artifactId>
-      <version>3.6.0</version>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-logging</artifactId>
     </dependency>
 
     <!-- Test dependencies -->
