@@ -32,8 +32,8 @@
     <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
     <rest-assured.version>2.9.0</rest-assured.version>
     <openshift-test-utils.version>2</openshift-test-utils.version>
-    <spring-boot-bom.version>1.5.7-SNAPSHOT</spring-boot-bom.version>
-    <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+    <spring-boot-bom.version>1.4.1.Beta2</spring-boot-bom.version>
+    <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
     <fabric8.skip>true</fabric8.skip>
