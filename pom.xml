@@ -32,7 +32,7 @@
     <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
     <rest-assured.version>2.9.0</rest-assured.version>
     <openshift-test-utils.version>2</openshift-test-utils.version>
-    <spring-boot-bom.version>1.4.1.Beta2</spring-boot-bom.version>
+    <spring-boot-bom.version>2</spring-boot-bom.version>
     <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
@@ -56,8 +56,8 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>me.snowdrop</groupId>
-        <artifactId>spring-boot-bom</artifactId>
+        <groupId>org.jboss.snowdrop</groupId>
+        <artifactId>spring-boot-1.4-bom</artifactId>
         <version>${spring-boot-bom.version}</version>
         <scope>import</scope>
         <type>pom</type>
