@@ -60,8 +60,8 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>me.snowdrop</groupId>
-        <artifactId>spring-boot-bom</artifactId>
+        <groupId>org.jboss.snowdrop</groupId>
+        <artifactId>spring-boot-1.4-bom</artifactId>
         <version>${spring-boot-bom.version}</version>
         <scope>import</scope>
         <type>pom</type>
