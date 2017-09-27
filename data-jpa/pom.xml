@@ -65,6 +65,10 @@
 
     <!-- Test dependencies -->
     <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-juli</artifactId>
+    </dependency>
+    <dependency>
       <groupId>me.snowdrop</groupId>
       <artifactId>common-utils</artifactId>
       <scope>test</scope>
