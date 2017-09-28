@@ -32,7 +32,7 @@
     <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
     <rest-assured.version>2.9.0</rest-assured.version>
     <openshift-test-utils.version>2</openshift-test-utils.version>
-    <spring-boot-bom.version>2</spring-boot-bom.version>
+    <spring-boot-bom.version>2.0.0.redhat-77</spring-boot-bom.version>
     <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
@@ -40,6 +40,13 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>Red Hat EA</id>
+      <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+    </repository>
+  </repositories>
 
   <modules>
     <module>common</module>
@@ -52,7 +59,7 @@
     <module>circuit-breaker-ribbon</module>
     <!--<module>ribbon</module>-->
   </modules>
-
+  
   <dependencyManagement>
     <dependencies>
       <dependency>
