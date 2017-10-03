@@ -42,10 +42,6 @@ public class HealthCheckApplicationHealthyTest {
         when().get(String.format("http://localhost:%d/health", this.port))
                 .then()
                 .statusCode(is(200));
-                // TODO - We get a shouldGetHealthyResponse:46 ? IllegalArgument
-                //.body("status", is("UP"))
-                //.body("custom.status", is("UP"))
-                //.body("diskSpace.status", is("UP"));
     }
 
 }
