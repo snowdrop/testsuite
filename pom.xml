@@ -217,5 +217,12 @@
     </profile>
   </profiles>
 
+  <repositories>
+    <repository>
+      <id>nexus-group</id>
+      <url>http://nexus-infra.ose.spring-boot.osepool.centralci.eng.rdu2.redhat.com/nexus/content/repositories/maven-redhat-public</url>
+    </repository>
+  </repositories>
+
 </project>
 
