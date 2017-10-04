@@ -50,6 +50,7 @@
     <module>rest</module>
     <module>rest-cxf</module>
     <module>circuit-breaker-ribbon</module>
+    <!--<module>ribbon</module>-->
   </modules>
 
   <dependencyManagement>
@@ -151,6 +152,21 @@
   <profiles>
     <profile>
       <id>openshift</id>
+<!--      <dependencies>
+        &lt;!&ndash; TODO - To be changed when we will switch to Arquillian Cube as we have version conflicts with Fabric8 Kuber Client 2 which is imported &ndash;&gt;
+        <dependency>
+          <groupId>io.fabric8</groupId>
+          <artifactId>kubernetes-client</artifactId>
+          <version>1.4.34</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>io.fabric8</groupId>
+          <artifactId>openshift-client</artifactId>
+          <version>1.4.34</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>-->
       <build>
         <plugins>
           <plugin>
