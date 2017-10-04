@@ -31,7 +31,7 @@
     <awaitifily.version>1.7.0</awaitifily.version>
     <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
     <rest-assured.version>2.9.0</rest-assured.version>
-    <openshift-test-utils.version>2</openshift-test-utils.version>
+    <openshift-test-utils.version>3-SNAPSHOT</openshift-test-utils.version>
     <spring-boot-bom.version>1.5.7-SNAPSHOT</spring-boot-bom.version>
     <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
 
@@ -50,7 +50,6 @@
     <module>rest</module>
     <module>rest-cxf</module>
     <module>circuit-breaker-ribbon</module>
-    <!--<module>ribbon</module>-->
   </modules>
 
   <dependencyManagement>
@@ -152,21 +151,6 @@
   <profiles>
     <profile>
       <id>openshift</id>
-<!--      <dependencies>
-        &lt;!&ndash; TODO - To be changed when we will switch to Arquillian Cube as we have version conflicts with Fabric8 Kuber Client 2 which is imported &ndash;&gt;
-        <dependency>
-          <groupId>io.fabric8</groupId>
-          <artifactId>kubernetes-client</artifactId>
-          <version>1.4.34</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>io.fabric8</groupId>
-          <artifactId>openshift-client</artifactId>
-          <version>1.4.34</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>-->
       <build>
         <plugins>
           <plugin>
