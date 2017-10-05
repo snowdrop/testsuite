@@ -7,3 +7,4 @@ spec:
               path: /bands
               port: 8080
               scheme: HTTP
+            timeoutSeconds: 2
