@@ -61,11 +61,6 @@
       <groupId>com.fasterxml.jackson.jaxrs</groupId>
       <artifactId>jackson-jaxrs-json-provider</artifactId>
     </dependency>
-    <!-- Apache Tomcat Dependency required -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-juli</artifactId>
-    </dependency>
 
     <!-- Testing -->
     <dependency>
