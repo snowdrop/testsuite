@@ -65,10 +65,6 @@
 
     <!-- Test dependencies -->
     <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-juli</artifactId>
-    </dependency>
-    <dependency>
       <groupId>me.snowdrop</groupId>
       <artifactId>common-utils</artifactId>
       <scope>test</scope>
@@ -79,21 +75,20 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>io.openshift</groupId>
-      <artifactId>openshift-test-utils</artifactId>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>io.fabric8</groupId>
-      <artifactId>kubernetes-client</artifactId>
-      <version>1.4.34</version>
+      <groupId>org.arquillian.cube</groupId>
+      <artifactId>arquillian-cube-openshift</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.fabric8</groupId>
-      <artifactId>openshift-client</artifactId>
-      <version>1.4.34</version>
-      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>io.undertow</groupId>
+          <artifactId>undertow-core</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 </project>

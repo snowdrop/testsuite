@@ -43,6 +43,12 @@ public class BandsController {
     }
 
     @ResponseBody
+    @GetMapping("/poke")
+    public Band poke() {
+        return new Band();
+    }
+
+    @ResponseBody
     @GetMapping("/bands/{id}")
     public Band get(@PathVariable("id") Long id) {
         return this.bandsRepository.findById(id);
@@ -54,5 +60,4 @@ public class BandsController {
         System.out.println(String.format("Creating band with id=%d and name=%s", band.getId(), band.getName()));
         this.bandsRepository.insert(band);
     }
-
 }

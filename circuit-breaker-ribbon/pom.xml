@@ -34,5 +34,6 @@
   <modules>
     <module>name-service</module>
     <module>greeting-service</module>
+    <module>tests</module>
   </modules>
 </project>

@@ -16,48 +16,36 @@
 
 package me.snowdrop.testsuite;
 
-import me.snowdrop.testsuite.common.utils.OpenShiftUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import static com.jayway.restassured.RestAssured.get;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.not;
+
+import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
+import org.arquillian.cube.openshift.impl.enricher.RouteURL;
+import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Hystrix with Ribbon integration test on OpenShift.
  *
  * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
  */
+@RunWith(Arquillian.class)
 public class OpenShiftIT {
 
-    private static final OpenShiftTestAssistant nameServiceAssistant = new OpenShiftTestAssistant("name-service", "../name-service/target/classes/META-INF/fabric8/openshift.yml");
+    @RouteURL("name-service")
+    @AwaitRoute
+    private String nameServiceUrl;
 
-    private static final OpenShiftTestAssistant greetingServiceAssistant = new OpenShiftTestAssistant("greeting-service", "target/classes/META-INF/fabric8/openshift.yml");
-
-    private static String greetingServiceUrl;
-
-    @BeforeClass
-    public static void prepare() throws Exception {
-        String nameServiceUrl = nameServiceAssistant.deployApplication();
-        greetingServiceUrl = greetingServiceAssistant.deployApplication();
-        nameServiceAssistant.awaitApplicationReadinessOrFail();
-        greetingServiceAssistant.awaitApplicationReadinessOrFail();
-        OpenShiftUtils.waitForApplication(nameServiceUrl);
-        OpenShiftUtils.waitForApplication(greetingServiceUrl);
-    }
-
-    @AfterClass
-    public static void cleanup() {
-        nameServiceAssistant.cleanup();
-        greetingServiceAssistant.cleanup();
-    }
+    @RouteURL("greeting-service")
+    @AwaitRoute(path = "/greeting")
+    private String greetingServiceUrl;
 
     @Test
     public void testThatWeServeAsExpected() {
-        get(greetingServiceUrl + "/greeting")
+        get(greetingServiceUrl + "greeting")
                 .then()
                 .body(containsString("Hello from"))
                 .body(not(containsString("Fallback")));
@@ -65,7 +53,7 @@ public class OpenShiftIT {
 
     @Test
     public void testThatWeFallbackOnDelay() {
-        get(greetingServiceUrl + "/greeting?delay=3000")
+        get(greetingServiceUrl + "greeting?delay=3000")
                 .then()
                 .body(equalTo("Hello from Fallback!"));
     }

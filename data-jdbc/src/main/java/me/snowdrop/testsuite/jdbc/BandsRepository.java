@@ -16,14 +16,14 @@
 
 package me.snowdrop.testsuite.jdbc;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import me.snowdrop.testsuite.common.entities.Band;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Repository to access {@link Band} entries.
@@ -38,17 +38,16 @@ public class BandsRepository {
     private static final String CREATE_QUERY = "insert into band (name) values ('%s')";
 
     private JdbcTemplate jdbcTemplate;
-
-    private RecordsRepository recordsRepository;
+    private RowMapper<Band> bandRowMapper;
 
     @Autowired
     public BandsRepository(JdbcTemplate jdbcTemplate, RecordsRepository recordsRepository) {
         this.jdbcTemplate = jdbcTemplate;
-        this.recordsRepository = recordsRepository;
+        this.bandRowMapper = new BandRowMapper(recordsRepository);
     }
 
     public Band findById(Long id) {
-        return this.jdbcTemplate.queryForObject(String.format(GET_BY_ID_QUERY, id), new BandRowMapper(this.recordsRepository));
+        return this.jdbcTemplate.queryForObject(String.format(GET_BY_ID_QUERY, id), bandRowMapper);
     }
 
     public void insert(Band band) {

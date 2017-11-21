@@ -5,15 +5,20 @@ spring:
 server:
   port: 8080
 
-backend:
-  ribbon:
-    eureka:
-      enabled: false
-    client:
-       enabled: true
+ribbon:
+  eureka:
+    enabled: false
+  client:
+    enabled: true
     # We will use Spring Cloud Kubernetes Ribbon to retrieve the list of the servers
     # listOfServers: backend:8080
     ServerListRefreshInterval: 15000
 
-hystrix.command.BackendCall.execution.isolation.thread.timeoutInMilliseconds: 30000
-hystrix.threadpool.BackendCallThread.coreSize: 5
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        requestVolumeThreshold: 3
+      metrics:
+        healthSnapshot:
+          intervalInMilliseconds: 100

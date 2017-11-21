@@ -16,35 +16,30 @@
 
 package me.snowdrop.testsuite.health;
 
-import com.jayway.restassured.RestAssured;
-import io.openshift.booster.test.OpenShiftTestAssistant;
-import me.snowdrop.testsuite.common.utils.OpenShiftUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import static com.jayway.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.is;
+
+import com.jayway.restassured.RestAssured;
+import org.arquillian.cube.openshift.impl.enricher.RouteURL;
+import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Health check application integration test with a healthy indicator.
  *
  * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
  */
+@RunWith(Arquillian.class)
 public class HealthCheckApplicationHealthyIT {
 
-    private static final OpenShiftTestAssistant ASSISTANT = new OpenShiftTestAssistant();
+    @RouteURL("${app.name}")
+    private String routeURL;
 
-    @BeforeClass
-    public static void prepare() throws Exception {
-        ASSISTANT.deployApplication();
-        ASSISTANT.awaitApplicationReadinessOrFail();
-        OpenShiftUtils.waitForApplication(RestAssured.baseURI);
-    }
-
-    @AfterClass
-    public static void cleanup() {
-        ASSISTANT.cleanup();
+    @Before
+    public void setup() throws Exception {
+        RestAssured.baseURI = routeURL;
     }
 
     @Test

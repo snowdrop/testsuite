@@ -17,31 +17,27 @@
 package me.snowdrop.testsuite.jdbc;
 
 import com.jayway.restassured.RestAssured;
-import io.openshift.booster.test.OpenShiftTestAssistant;
-import me.snowdrop.testsuite.common.utils.OpenShiftUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
+import org.arquillian.cube.openshift.impl.enricher.RouteURL;
+import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Before;
+import org.junit.runner.RunWith;
 
 /**
  * OpenShift integration test for records application.
  *
  * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
  */
+@RunWith(Arquillian.class)
 public class RecordsApplicationIT extends RecordsApplicationTestBase {
 
-    private static final OpenShiftTestAssistant ASSISTANT = new OpenShiftTestAssistant();
+    @RouteURL("${app.name}")
+    @AwaitRoute(path = "/poke")
+    private String routeURL;
 
-    @BeforeClass
-    public static void prepare() throws Exception {
-        ASSISTANT.deployApplication();
-        ASSISTANT.awaitApplicationReadinessOrFail();
-        RestAssured.baseURI = RestAssured.baseURI + "/bands";
-        OpenShiftUtils.waitForApplication(RestAssured.baseURI);
-    }
-
-    @AfterClass
-    public static void cleanup() {
-        ASSISTANT.cleanup();
+    @Before
+    public void setup() throws Exception {
+        RestAssured.baseURI = routeURL + "bands";
     }
 
 }

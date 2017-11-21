@@ -52,39 +52,9 @@
       <artifactId>spring-cloud-starter-hystrix</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.fabric8</groupId>
-      <artifactId>spring-cloud-kubernetes-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.fabric8</groupId>
-      <artifactId>spring-cloud-starter-kubernetes-netflix</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-juli</artifactId>
-    </dependency>
-
-    <!-- Test dependencies -->
-    <dependency>
-      <groupId>me.snowdrop</groupId>
-      <artifactId>name-service</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>me.snowdrop</groupId>
-      <artifactId>common-utils</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.openshift</groupId>
-      <artifactId>openshift-test-utils</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-kubernetes-ribbon</artifactId>
     </dependency>
   </dependencies>
+
 </project>

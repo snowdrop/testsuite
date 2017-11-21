@@ -31,9 +31,10 @@
     <awaitifily.version>1.7.0</awaitifily.version>
     <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
     <rest-assured.version>2.9.0</rest-assured.version>
-    <openshift-test-utils.version>2</openshift-test-utils.version>
-    <spring-boot-bom.version>1.5.8-SNAPSHOT</spring-boot-bom.version>
+    <spring-boot.bom.version>1.5.8.Final</spring-boot.bom.version>
     <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
+    <arquillian.version>1.1.13.Final</arquillian.version>
+    <arquillian-cube.version>1.9.2</arquillian-cube.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
     <fabric8.skip>true</fabric8.skip>
@@ -60,11 +61,25 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.jboss.snowdrop</groupId>
-        <artifactId>spring-boot-1.4-bom</artifactId>
-        <version>${spring-boot-bom.version}</version>
-        <scope>import</scope>
+        <groupId>me.snowdrop</groupId>
+        <artifactId>spring-boot-bom</artifactId>
+        <version>${spring-boot.bom.version}</version>
         <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>${arquillian.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.arquillian.cube</groupId>
+        <artifactId>arquillian-cube-bom</artifactId>
+        <version>${arquillian-cube.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.jayway.restassured</groupId>
@@ -75,11 +90,6 @@
         <groupId>com.jayway.awaitility</groupId>
         <artifactId>awaitility</artifactId>
         <version>${awaitifily.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.openshift</groupId>
-        <artifactId>openshift-test-utils</artifactId>
-        <version>${openshift-test-utils.version}</version>
       </dependency>
       <dependency>
         <groupId>me.snowdrop</groupId>

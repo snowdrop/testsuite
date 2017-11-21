@@ -15,7 +15,7 @@ Steps to execute the test suite are:
 oc login $(minishift console --url) -u admin -p admin
 ----
 
-2) Grant permissions for config map
+2) Grant permissions for config map, circuit-breaker
 ----
 oc policy add-role-to-user view -n $(oc project -q) -z default
 ----
