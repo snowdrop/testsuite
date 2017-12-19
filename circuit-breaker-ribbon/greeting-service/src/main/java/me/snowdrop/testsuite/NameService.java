@@ -18,7 +18,6 @@ package me.snowdrop.testsuite;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,11 +28,6 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class NameService {
-
-    @Value("${name-service.host:name-service}")
-    private String host;
-    @Value("${name-service.port:80}")
-    private String port;
 
     private final RestTemplate restTemplate;
 
@@ -46,7 +40,7 @@ public class NameService {
             //@HystrixProperty(name = "execution.isolation.strategy", value="SEMAPHORE") // execute in the same Thread
     })
     public String getName(int delay) {
-        return this.restTemplate.getForObject(String.format("http://%s:%s/name?delay=%d", host, port, delay), String.class);
+        return this.restTemplate.getForObject(String.format("http://name-service/name?delay=%d", delay), String.class);
     }
 
     private String getFallbackName(int delay) {
