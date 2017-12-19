@@ -16,6 +16,7 @@
 
 package me.snowdrop.testsuite;
 
+import static com.jayway.awaitility.Awaitility.await;
 import static com.jayway.restassured.RestAssured.get;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -24,8 +25,11 @@ import static org.hamcrest.CoreMatchers.not;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Hystrix with Ribbon integration test on OpenShift.
@@ -42,6 +46,15 @@ public class OpenShiftIT {
     @RouteURL("greeting-service")
     @AwaitRoute(path = "/greeting")
     private String greetingServiceUrl;
+
+    @Before
+    public void before() {
+        await().atMost(30, TimeUnit.SECONDS)
+                .until(() -> !get(greetingServiceUrl + "greeting")
+                        .getBody()
+                        .asString()
+                        .contains("Fallback"));
+    }
 
     @Test
     public void testThatWeServeAsExpected() {
