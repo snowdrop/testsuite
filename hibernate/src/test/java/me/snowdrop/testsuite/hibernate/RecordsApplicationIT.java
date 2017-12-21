@@ -17,6 +17,7 @@
 package me.snowdrop.testsuite.hibernate;
 
 import com.jayway.restassured.RestAssured;
+import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
@@ -32,6 +33,7 @@ import org.junit.runner.RunWith;
 public class RecordsApplicationIT extends RecordsApplicationTestBase {
 
     @RouteURL("${app.name}")
+    @AwaitRoute(path = "/poke")
     private String routeURL;
 
     @Before

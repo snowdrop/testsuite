@@ -17,6 +17,7 @@
 package me.snowdrop.testsuite.rest;
 
 import com.jayway.restassured.RestAssured;
+import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
@@ -31,6 +32,7 @@ import org.junit.runner.RunWith;
 public class RestApplicationIT extends RestApplicationTestBase {
 
     @RouteURL("${app.name}")
+    @AwaitRoute(path = "/greeting")
     private String routeURL;
 
     @Before

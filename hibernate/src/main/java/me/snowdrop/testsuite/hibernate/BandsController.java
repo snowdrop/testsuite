@@ -42,6 +42,12 @@ public class BandsController {
     private EntityManager entityManager;
 
     @ResponseBody
+    @GetMapping("/poke")
+    public Band poke() {
+        return new Band();
+    }
+
+    @ResponseBody
     @GetMapping("/bands/{id}")
     public Band get(@PathVariable("id") Long id) {
         return this.entityManager.find(Band.class, id);
