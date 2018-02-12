@@ -31,8 +31,8 @@
     <awaitifily.version>1.7.0</awaitifily.version>
     <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
     <rest-assured.version>2.9.0</rest-assured.version>
-    <spring-boot.bom.version>1.5.8.Final</spring-boot.bom.version>
-    <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
+    <spring-boot.bom.version>1.5.10.Beta2</spring-boot.bom.version>
+    <spring-boot.version>1.5.10.RELEASE</spring-boot.version>
     <arquillian.version>1.2.1.Final</arquillian.version>
     <arquillian-cube.version>1.13.0</arquillian-cube.version>
 
@@ -40,7 +40,7 @@
     <fabric8.skip>true</fabric8.skip>
 
     <!-- Maven plugins -->
-    <maven-fabric8-plugin.version>3.5.30</maven-fabric8-plugin.version>
+    <maven-fabric8-plugin.version>3.5.34</maven-fabric8-plugin.version>
     <maven-failsafe-plugin>2.20</maven-failsafe-plugin>
 
     <maven.compiler.source>1.8</maven.compiler.source>
