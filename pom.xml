@@ -40,7 +40,7 @@
     <fabric8.skip>true</fabric8.skip>
 
     <!-- Maven plugins -->
-    <maven-fabric8-plugin.version>3.5.34</maven-fabric8-plugin.version>
+    <maven-fabric8-plugin.version>3.5.30</maven-fabric8-plugin.version>
     <maven-failsafe-plugin>2.20</maven-failsafe-plugin>
 
     <maven.compiler.source>1.8</maven.compiler.source>
