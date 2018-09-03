@@ -32,6 +32,7 @@
 
   <properties>
     <fabric8.skip>false</fabric8.skip>
+    <ribbon.version>2.2.2</ribbon.version>
   </properties>
 
   <dependencies>
@@ -45,15 +46,26 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-kubernetes-ribbon</artifactId>
+      <artifactId>spring-cloud-starter-kubernetes-netflix</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.netflix.ribbon</groupId>
+      <artifactId>ribbon</artifactId>
+      <version>${ribbon.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.netflix.ribbon</groupId>
+      <artifactId>ribbon-loadbalancer</artifactId>
+      <version>${ribbon.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.netflix.ribbon</groupId>
+      <artifactId>ribbon-httpclient</artifactId>
+      <version>${ribbon.version}</version>
     </dependency>
   </dependencies>
 
