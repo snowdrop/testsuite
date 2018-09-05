@@ -18,8 +18,8 @@ package me.snowdrop.testsuite.common.utils;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.jayway.awaitility.Awaitility.await;
-import static com.jayway.restassured.RestAssured.get;
+import static io.restassured.RestAssured.get;
+import static org.awaitility.Awaitility.await;
 
 /**
  * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>

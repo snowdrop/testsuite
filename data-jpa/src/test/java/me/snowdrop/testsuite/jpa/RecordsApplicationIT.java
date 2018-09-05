@@ -16,12 +16,7 @@
 
 package me.snowdrop.testsuite.jpa;
 
-import static com.jayway.awaitility.Awaitility.await;
-import static com.jayway.restassured.RestAssured.get;
-
-import java.util.concurrent.TimeUnit;
-
-import com.jayway.restassured.RestAssured;
+import io.restassured.RestAssured;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;

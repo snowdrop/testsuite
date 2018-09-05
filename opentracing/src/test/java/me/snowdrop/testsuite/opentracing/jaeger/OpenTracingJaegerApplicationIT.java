@@ -18,9 +18,9 @@
 
 package me.snowdrop.testsuite.opentracing.jaeger;
 
-import static com.jayway.restassured.RestAssured.when;
+import static io.restassured.RestAssured.when;
 
-import com.jayway.restassured.RestAssured;
+import io.restassured.RestAssured;
 import java.util.concurrent.TimeUnit;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;

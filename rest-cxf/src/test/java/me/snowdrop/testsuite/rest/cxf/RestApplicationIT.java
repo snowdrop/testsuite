@@ -16,7 +16,7 @@
 
 package me.snowdrop.testsuite.rest.cxf;
 
-import com.jayway.restassured.RestAssured;
+import io.restassured.RestAssured;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
