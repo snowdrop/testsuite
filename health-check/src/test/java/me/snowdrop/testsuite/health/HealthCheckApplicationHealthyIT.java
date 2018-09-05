@@ -16,10 +16,10 @@
 
 package me.snowdrop.testsuite.health;
 
-import static com.jayway.restassured.RestAssured.when;
+import static io.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.is;
 
-import com.jayway.restassured.RestAssured;
+import io.restassured.RestAssured;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;

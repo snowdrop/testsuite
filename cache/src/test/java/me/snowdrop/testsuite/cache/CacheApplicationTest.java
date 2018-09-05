@@ -18,7 +18,7 @@
 
 package me.snowdrop.testsuite.cache;
 
-import com.jayway.restassured.RestAssured;
+import io.restassured.RestAssured;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.runner.RunWith;

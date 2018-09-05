@@ -18,7 +18,7 @@
 
 package me.snowdrop.testsuite.cache;
 
-import com.jayway.restassured.RestAssured;
+import io.restassured.RestAssured;
 import io.fabric8.kubernetes.api.model.v3_1.PodList;
 import io.fabric8.kubernetes.clnt.v3_1.KubernetesClient;
 import org.arquillian.cube.kubernetes.api.Session;

@@ -19,14 +19,14 @@
 package me.snowdrop.testsuite.cache;
 
 import com.google.common.collect.Lists;
-import com.jayway.restassured.http.ContentType;
-import com.jayway.restassured.response.ValidatableResponse;
+import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static com.jayway.restassured.RestAssured.when;
+import static io.restassured.RestAssured.when;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 

@@ -18,7 +18,7 @@ package me.snowdrop.testsuite.rest.cxf;
 
 import org.junit.Test;
 
-import static com.jayway.restassured.RestAssured.when;
+import static io.restassured.RestAssured.when;
 import static org.hamcrest.core.Is.is;
 
 /**

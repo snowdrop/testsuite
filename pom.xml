@@ -28,20 +28,21 @@
   <description>Snowdrop Test Suite - Parent</description>
 
   <properties>
-    <awaitifily.version>1.7.0</awaitifily.version>
-    <checkstyle-config.version>1.0.5.Final</checkstyle-config.version>
-    <rest-assured.version>2.9.0</rest-assured.version>
+    <awaitifily.version>3.1.2</awaitifily.version>
+    <rest-assured.version>3.1.1</rest-assured.version>
     <spring-boot.bom.version>1.5.15.Final</spring-boot.bom.version>
     <spring-boot.version>1.5.15.RELEASE</spring-boot.version>
     <arquillian.version>1.2.1.Final</arquillian.version>
     <arquillian-cube.version>1.13.0</arquillian-cube.version>
+    <junit.version>4.12</junit.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
     <fabric8.skip>true</fabric8.skip>
 
     <!-- Maven plugins -->
     <maven-fabric8-plugin.version>3.5.30</maven-fabric8-plugin.version>
-    <maven-failsafe-plugin>2.20</maven-failsafe-plugin>
+    <maven-failsafe-plugin.version>2.20</maven-failsafe-plugin.version>
+    <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
 
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -84,12 +85,12 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>com.jayway.restassured</groupId>
+        <groupId>io.rest-assured</groupId>
         <artifactId>rest-assured</artifactId>
         <version>${rest-assured.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.jayway.awaitility</groupId>
+        <groupId>org.awaitility</groupId>
         <artifactId>awaitility</artifactId>
         <version>${awaitifily.version}</version>
       </dependency>
@@ -108,7 +109,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.12</version>
+        <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -132,36 +133,8 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.20</version>
+        <version>${maven-surefire-plugin.version}</version>
       </plugin>
-      <!--<plugin>-->
-      <!--<groupId>org.apache.maven.plugins</groupId>-->
-      <!--<artifactId>maven-checkstyle-plugin</artifactId>-->
-      <!--<configuration>-->
-      <!--<configLocation>wildfly-checkstyle/checkstyle.xml</configLocation>-->
-      <!--<consoleOutput>true</consoleOutput>-->
-      <!--<failsOnError>true</failsOnError>-->
-      <!--<includeTestSourceDirectory>true</includeTestSourceDirectory>-->
-      <!--<excludes>**/*$logger.java,**/*$bundle.java</excludes>-->
-      <!--<useFile/>-->
-      <!--</configuration>-->
-      <!--<dependencies>-->
-      <!--<dependency>-->
-      <!--<groupId>org.wildfly.checkstyle</groupId>-->
-      <!--<artifactId>wildfly-checkstyle-config</artifactId>-->
-      <!--<version>${checkstyle-config.version}</version>-->
-      <!--</dependency>-->
-      <!--</dependencies>-->
-      <!--<executions>-->
-      <!--<execution>-->
-      <!--<id>check-style</id>-->
-      <!--<phase>compile</phase>-->
-      <!--<goals>-->
-      <!--<goal>checkstyle</goal>-->
-      <!--</goals>-->
-      <!--</execution>-->
-      <!--</executions>-->
-      <!--</plugin>-->
     </plugins>
   </build>
 
@@ -198,7 +171,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
-            <version>${maven-failsafe-plugin}</version>
+            <version>${maven-failsafe-plugin.version}</version>
             <configuration>
               <systemPropertyVariables>
                 <app.name>${project.artifactId}</app.name>
