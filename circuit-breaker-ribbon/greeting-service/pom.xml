@@ -32,6 +32,9 @@
 
   <properties>
     <fabric8.skip>false</fabric8.skip>
+    <ribbon.version>2.2.2</ribbon.version>
+    <rxjava.version>1.1.10</rxjava.version>
+    <hystrix.version>1.5.12</hystrix.version>
   </properties>
 
   <dependencies>
@@ -45,15 +48,32 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+      <version>1.4.5.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-kubernetes-ribbon</artifactId>
+      <artifactId>spring-cloud-starter-kubernetes-netflix</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.netflix.ribbon</groupId>
+      <artifactId>ribbon</artifactId>
+      <version>${ribbon.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.netflix.ribbon</groupId>
+      <artifactId>ribbon-loadbalancer</artifactId>
+      <version>${ribbon.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.netflix.ribbon</groupId>
+      <artifactId>ribbon-httpclient</artifactId>
+      <version>${ribbon.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.reactivex</groupId>
+      <artifactId>rxjava</artifactId>
+      <version>${rxjava.version}</version>
     </dependency>
   </dependencies>
 
