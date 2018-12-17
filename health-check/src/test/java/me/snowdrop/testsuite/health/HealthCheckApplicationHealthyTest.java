@@ -39,7 +39,7 @@ public class HealthCheckApplicationHealthyTest {
 
     @Test
     public void shouldGetHealthyResponse() {
-        when().get(String.format("http://localhost:%d/health", this.port))
+        when().get(String.format("http://localhost:%d/actuator/health", this.port))
                 .then()
                 .statusCode(is(200));
     }

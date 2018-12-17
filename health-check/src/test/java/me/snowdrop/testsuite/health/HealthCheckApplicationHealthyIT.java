@@ -44,7 +44,7 @@ public class HealthCheckApplicationHealthyIT {
 
     @Test
     public void shouldGetHealthyResponse() {
-        when().get("/health")
+        when().get("/actuator/health")
                 .then()
                 .statusCode(is(200));
     }

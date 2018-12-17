@@ -28,19 +28,19 @@
   <description>Snowdrop Test Suite - Parent</description>
 
   <properties>
-    <awaitifily.version>3.1.2</awaitifily.version>
-    <rest-assured.version>3.1.1</rest-assured.version>
-    <spring-boot.bom.version>1.5.16-SNAPSHOT</spring-boot.bom.version>
-    <spring-boot.version>1.5.16.RELEASE</spring-boot.version>
-    <arquillian.version>1.2.1.Final</arquillian.version>
-    <arquillian-cube.version>1.13.0</arquillian-cube.version>
+    <awaitifily.version>3.1.5</awaitifily.version>
+    <rest-assured.version>3.2.0</rest-assured.version>
+    <spring-boot.bom.version>2.1.0-SNAPSHOT</spring-boot.bom.version>
+    <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+    <arquillian.version>1.4.1.Final</arquillian.version>
+    <arquillian-cube.version>1.18.2</arquillian-cube.version>
     <junit.version>4.12</junit.version>
 
     <!-- Fabric8 Parameter to skip plugin execution -->
     <fabric8.skip>true</fabric8.skip>
 
     <!-- Maven plugins -->
-    <maven-fabric8-plugin.version>3.5.30</maven-fabric8-plugin.version>
+    <maven-fabric8-plugin.version>3.5.42</maven-fabric8-plugin.version>
     <maven-failsafe-plugin.version>2.20</maven-failsafe-plugin.version>
     <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
 
@@ -56,9 +56,9 @@
     <module>hibernate</module>
     <module>rest</module>
     <module>rest-cxf</module>
-    <module>circuit-breaker-ribbon</module>
+    <!--<module>circuit-breaker-ribbon</module>-->
     <module>cache</module>
-    <module>opentracing</module>
+    <!--<module>opentracing</module>-->
   </modules>
 
   <dependencyManagement>

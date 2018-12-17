@@ -18,9 +18,9 @@
 
 package me.snowdrop.testsuite.cache;
 
+import io.fabric8.kubernetes.api.model.v4_0.PodList;
+import io.fabric8.kubernetes.clnt.v4_0.KubernetesClient;
 import io.restassured.RestAssured;
-import io.fabric8.kubernetes.api.model.v3_1.PodList;
-import io.fabric8.kubernetes.clnt.v3_1.KubernetesClient;
 import org.arquillian.cube.kubernetes.api.Session;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
