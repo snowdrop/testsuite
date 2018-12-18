@@ -55,7 +55,7 @@
     <module>health-check</module>
     <module>hibernate</module>
     <module>rest</module>
-    <module>rest-cxf</module>
+    <!--<module>rest-cxf</module>-->
     <!--<module>circuit-breaker-ribbon</module>-->
     <module>cache</module>
     <!--<module>opentracing</module>-->
