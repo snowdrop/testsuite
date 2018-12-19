@@ -18,10 +18,9 @@
 
 package me.snowdrop.testsuite.opentracing.jaeger;
 
-import static io.restassured.RestAssured.when;
+import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
-import java.util.concurrent.TimeUnit;
 import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
 import org.arquillian.cube.openshift.impl.enricher.RouteURL;
 import org.awaitility.Awaitility;
@@ -31,44 +30,46 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.web.client.RestTemplate;
 
+import static io.restassured.RestAssured.when;
+
 @RunWith(Arquillian.class)
 public class OpenTracingJaegerApplicationIT {
 
-  private RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate = new RestTemplate();
 
-  @RouteURL("${app.name}")
-  @AwaitRoute(path = "/info")
-  private String appRouteURL;
+    @RouteURL("${app.name}")
+    @AwaitRoute(path = "/actuator/info")
+    private String appRouteURL;
 
-  @RouteURL("jaeger-query")
-  private String jaegerQueryRouteURL;
+    @RouteURL("jaeger-query")
+    private String jaegerQueryRouteURL;
 
-  @Before
-  public void setup() throws Exception {
-    RestAssured.baseURI = appRouteURL + "hello";
-  }
+    @Before
+    public void setup() {
+        RestAssured.baseURI = appRouteURL + "hello";
+    }
 
-  @Test
-  public void invokeHello() {
-    when().get()
-        .then()
-        .statusCode(200);
+    @Test
+    public void invokeHello() {
+        when().get()
+                .then()
+                .statusCode(200);
 
-    waitForJaegerQueryToReportTrace();
-  }
+        waitForJaegerQueryToReportTrace();
+    }
 
-  private void waitForJaegerQueryToReportTrace() {
-    Awaitility.await().atMost(30, TimeUnit.SECONDS).until(() -> {
-      try {
-        final String output = restTemplate.getForObject(
-            String.format("%sapi/traces?service=demo-opentracing-jaeger", jaegerQueryRouteURL),
-            String.class
-        );
-        return output.contains("hello");
-      } catch (Exception e) {
-        return false;
-      }
-    });
-  }
+    private void waitForJaegerQueryToReportTrace() {
+        Awaitility.await().atMost(30, TimeUnit.SECONDS).until(() -> {
+            try {
+                final String output = restTemplate.getForObject(
+                        String.format("%sapi/traces?service=demo-opentracing-jaeger", jaegerQueryRouteURL),
+                        String.class
+                );
+                return output.contains("hello");
+            } catch (Exception e) {
+                return false;
+            }
+        });
+    }
 
 }

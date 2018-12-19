@@ -24,8 +24,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class OpenTracingJaegerApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(OpenTracingJaegerApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(OpenTracingJaegerApplication.class, args);
+    }
 
 }

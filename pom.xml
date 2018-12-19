@@ -58,7 +58,7 @@
     <!--<module>rest-cxf</module>-->
     <!--<module>circuit-breaker-ribbon</module>-->
     <module>cache</module>
-    <!--<module>opentracing</module>-->
+    <module>opentracing</module>
   </modules>
 
   <dependencyManagement>
