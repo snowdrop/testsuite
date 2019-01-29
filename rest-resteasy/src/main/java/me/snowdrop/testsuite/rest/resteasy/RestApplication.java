@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.snowdrop.testsuite.rest.cxf;
+package me.snowdrop.testsuite.rest.resteasy;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.springframework.boot.SpringApplication;

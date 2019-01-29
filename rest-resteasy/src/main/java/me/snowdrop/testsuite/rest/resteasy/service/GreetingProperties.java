@@ -14,30 +14,27 @@
  * limitations under the License.
  */
 
-package me.snowdrop.testsuite.rest.cxf;
+package me.snowdrop.testsuite.rest.resteasy.service;
 
-import io.restassured.RestAssured;
-import org.junit.Before;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
- * RestApplication unit test.
+ * Application properties.
  *
  * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class RestApplicationTest extends RestApplicationTestBase {
+@Component
+@ConfigurationProperties("greeting")
+public class GreetingProperties {
 
-    @Value("${local.server.port}")
-    int port;
+    private String message = "Hello, %s!";
 
-    @Before
-    public void beforeTest() {
-        RestAssured.baseURI = String.format("http://localhost:%d/greeting", port);
+    public String getMessage() {
+        return this.message;
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

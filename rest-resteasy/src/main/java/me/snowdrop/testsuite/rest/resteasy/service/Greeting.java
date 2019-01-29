@@ -14,27 +14,34 @@
  * limitations under the License.
  */
 
-package me.snowdrop.testsuite.rest.cxf.service;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+package me.snowdrop.testsuite.rest.resteasy.service;
 
 /**
- * Application properties.
+ * Greeting dto.
  *
- * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
+ * @author <a href="mailto:cmoulliard@redhat.com">Charles Moulliard</a>
  */
-@Component
-@ConfigurationProperties("greeting")
-public class GreetingProperties {
+public class Greeting {
 
-    private String message = "Hello, %s!";
+    private final long id;
 
-    public String getMessage() {
-        return this.message;
+    private final String content;
+
+    public Greeting() {
+        this.id = 0;
+        this.content = null;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public Greeting(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
+    public long getId() {
+        return this.id;
+    }
+
+    public String getContent() {
+        return this.content;
     }
 }

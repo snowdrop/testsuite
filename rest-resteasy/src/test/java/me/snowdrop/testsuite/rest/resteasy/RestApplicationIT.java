@@ -14,26 +14,30 @@
  * limitations under the License.
  */
 
-package me.snowdrop.testsuite.rest.cxf;
+package me.snowdrop.testsuite.rest.resteasy;
 
-import org.junit.Test;
-
-import static io.restassured.RestAssured.when;
-import static org.hamcrest.core.Is.is;
+import io.restassured.RestAssured;
+import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
+import org.arquillian.cube.openshift.impl.enricher.RouteURL;
+import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Before;
+import org.junit.runner.RunWith;
 
 /**
- * Base RestApplication test class shared by unit and integration test classes.
+ * RestApplication Open Shift integration test.
  *
  * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
  */
-public abstract class RestApplicationTestBase {
+@RunWith(Arquillian.class)
+public class RestApplicationIT extends RestApplicationTestBase {
 
-    @Test
-    public void shouldGetHelloWorld() {
-        when().get()
-                .then()
-                .statusCode(200)
-                .body("content", is("Hello, World!"));
+    @RouteURL("${app.name}")
+    @AwaitRoute(path = "/greeting")
+    private String routeURL;
+
+    @Before
+    public void setup() throws Exception {
+        RestAssured.baseURI = routeURL + "greeting";
     }
 
 }

@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-package me.snowdrop.testsuite.rest.cxf.service;
+package me.snowdrop.testsuite.rest.resteasy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**

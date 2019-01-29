@@ -14,34 +14,26 @@
  * limitations under the License.
  */
 
-package me.snowdrop.testsuite.rest.cxf.service;
+package me.snowdrop.testsuite.rest.resteasy;
+
+import org.junit.Test;
+
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.core.Is.is;
 
 /**
- * Greeting dto.
+ * Base RestApplication test class shared by unit and integration test classes.
  *
- * @author <a href="mailto:cmoulliard@redhat.com">Charles Moulliard</a>
+ * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
  */
-public class Greeting {
+public abstract class RestApplicationTestBase {
 
-    private final long id;
-
-    private final String content;
-
-    public Greeting() {
-        this.id = 0;
-        this.content = null;
+    @Test
+    public void shouldGetHelloWorld() {
+        when().get()
+                .then()
+                .statusCode(200)
+                .body("content", is("Hello, World!"));
     }
 
-    public Greeting(long id, String content) {
-        this.id = id;
-        this.content = content;
-    }
-
-    public long getId() {
-        return this.id;
-    }
-
-    public String getContent() {
-        return this.content;
-    }
 }

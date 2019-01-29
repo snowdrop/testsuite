@@ -14,30 +14,30 @@
  * limitations under the License.
  */
 
-package me.snowdrop.testsuite.rest.cxf;
+package me.snowdrop.testsuite.rest.resteasy;
 
 import io.restassured.RestAssured;
-import org.arquillian.cube.openshift.impl.enricher.AwaitRoute;
-import org.arquillian.cube.openshift.impl.enricher.RouteURL;
-import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * RestApplication Open Shift integration test.
+ * RestApplication unit test.
  *
  * @author <a href="mailto:gytis@redhat.com">Gytis Trikleris</a>
  */
-@RunWith(Arquillian.class)
-public class RestApplicationIT extends RestApplicationTestBase {
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class RestApplicationTest extends RestApplicationTestBase {
 
-    @RouteURL("${app.name}")
-    @AwaitRoute(path = "/greeting")
-    private String routeURL;
+    @Value("${local.server.port}")
+    int port;
 
     @Before
-    public void setup() throws Exception {
-        RestAssured.baseURI = routeURL + "greeting";
+    public void beforeTest() {
+        RestAssured.baseURI = String.format("http://localhost:%d/greeting", port);
     }
 
 }

@@ -24,10 +24,10 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>rest-cxf</artifactId>
+  <artifactId>rest-resteasy</artifactId>
 
-  <name>Snowdrop Test Suite - REST - Apache CXF</name>
-  <description>Snowdrop Test Suite - REST - Apache CXF</description>
+  <name>Snowdrop Test Suite - REST - RESTEasy</name>
+  <description>Snowdrop Test Suite - REST - RESTEasy</description>
 
   <properties>
     <fabric8.skip>false</fabric8.skip>
@@ -36,25 +36,26 @@
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
-      <exclusions>
-        <!-- Excluded to avoid to support indirectly the Spring Annotations -->
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-web</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-spring-boot-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
     </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-web</artifactId>-->
+    <!--</dependency>-->
     <dependency>
-      <groupId>org.hibernate</groupId>
+      <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
     </dependency>
     <dependency>
