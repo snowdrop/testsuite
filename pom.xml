@@ -30,7 +30,7 @@
   <properties>
     <awaitifily.version>3.1.5</awaitifily.version>
     <rest-assured.version>3.2.0</rest-assured.version>
-    <spring-boot.bom.version>2.1.2-SNAPSHOT</spring-boot.bom.version>
+    <spring-boot.bom.version>2.1.2.Final</spring-boot.bom.version>
     <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
     <arquillian.version>1.4.1.Final</arquillian.version>
     <arquillian-cube.version>1.18.2</arquillian-cube.version>
