@@ -38,6 +38,10 @@
 
     <fabric8-maven-plugin.version>4.4.1</fabric8-maven-plugin.version>
 
+    <openjdk18-openshift.version>latest</openjdk18-openshift.version>
+    <fabric8.generator.from>
+      registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${openjdk18-openshift.version}
+    </fabric8.generator.from>
     <fabric8.skip>true</fabric8.skip>
 
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -109,16 +113,9 @@
             </configuration>
             <executions>
               <execution>
-                <id>pre-resource</id>
-                <phase>prepare-package</phase>
+                <id>fmp</id>
                 <goals>
                   <goal>resource</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>pre-build</id>
-                <phase>package</phase>
-                <goals>
                   <goal>build</goal>
                 </goals>
               </execution>

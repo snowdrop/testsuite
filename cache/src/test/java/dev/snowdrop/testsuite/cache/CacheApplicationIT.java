@@ -39,7 +39,7 @@ import java.io.IOException;
 public class CacheApplicationIT extends CacheApplicationTestBase{
 
     @RouteURL("${app.name}")
-    @AwaitRoute(path = "/favicon.ico")
+    @AwaitRoute(path = "/actuator/health")
     private String routeURL;
 
     @ArquillianResource
