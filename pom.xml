@@ -57,7 +57,7 @@
     <module>rest</module>
     <module>rest-resteasy</module>
     <module>cache</module>
-    <module>opentracing</module>
+<!--    <module>opentracing</module> TODO https://github.com/snowdrop/testsuite/issues/3-->
   </modules>
 
   <dependencyManagement>
