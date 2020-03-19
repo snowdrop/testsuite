@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>me.snowdrop</groupId>
+    <groupId>dev.snowdrop</groupId>
     <artifactId>testsuite-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../</relativePath>
   </parent>
 
-  <groupId>org.obsidiantoaster.quickstart</groupId>
-  <artifactId>opentracing-jaeger</artifactId>
+  <artifactId>opentracing</artifactId>
 
   <name>Snowdrop Test Suite - OpenTracing Jaeger</name>
   <description>Snowdrop Test Suite - OpenTracing Jaeger</description>
@@ -22,7 +22,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>me.snowdrop</groupId>
+      <groupId>dev.snowdrop</groupId>
       <artifactId>common-entities</artifactId>
     </dependency>
     <dependency>
@@ -40,7 +40,7 @@
 
     <!-- Test dependencies -->
     <dependency>
-      <groupId>me.snowdrop</groupId>
+      <groupId>dev.snowdrop</groupId>
       <artifactId>common-utils</artifactId>
       <scope>test</scope>
     </dependency>

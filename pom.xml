@@ -19,7 +19,12 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>me.snowdrop</groupId>
+  <parent>
+    <groupId>dev.snowdrop</groupId>
+    <artifactId>snowdrop-dependencies</artifactId>
+    <version>2.2.5-SNAPSHOT</version>
+  </parent>
+
   <artifactId>testsuite-parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -28,21 +33,12 @@
   <description>Snowdrop Test Suite - Parent</description>
 
   <properties>
-    <awaitifily.version>3.1.5</awaitifily.version>
-    <rest-assured.version>3.2.0</rest-assured.version>
-    <spring-boot.bom.version>2.1.2.Final</spring-boot.bom.version>
-    <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
-    <arquillian.version>1.4.1.Final</arquillian.version>
+    <arquillian.version>1.6.0.Final</arquillian.version>
     <arquillian-cube.version>1.18.2</arquillian-cube.version>
-    <junit.version>4.12</junit.version>
 
-    <!-- Fabric8 Parameter to skip plugin execution -->
+    <fabric8-maven-plugin.version>4.4.1</fabric8-maven-plugin.version>
+
     <fabric8.skip>true</fabric8.skip>
-
-    <!-- Maven plugins -->
-    <maven-fabric8-plugin.version>3.5.42</maven-fabric8-plugin.version>
-    <maven-failsafe-plugin.version>2.20</maven-failsafe-plugin.version>
-    <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
 
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -56,20 +52,12 @@
     <module>hibernate</module>
     <module>rest</module>
     <module>rest-resteasy</module>
-    <!--<module>circuit-breaker-ribbon</module>-->
     <module>cache</module>
     <module>opentracing</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>me.snowdrop</groupId>
-        <artifactId>spring-boot-bom</artifactId>
-        <version>${spring-boot.bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
       <dependency>
         <groupId>org.jboss.arquillian</groupId>
         <artifactId>arquillian-bom</artifactId>
@@ -85,38 +73,14 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>io.rest-assured</groupId>
-        <artifactId>rest-assured</artifactId>
-        <version>${rest-assured.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.awaitility</groupId>
-        <artifactId>awaitility</artifactId>
-        <version>${awaitifily.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>me.snowdrop</groupId>
+        <groupId>dev.snowdrop</groupId>
         <artifactId>common-entities</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>me.snowdrop</groupId>
+        <groupId>dev.snowdrop</groupId>
         <artifactId>common-utils</artifactId>
         <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>1.4.197</version>
-        <scope>runtime</scope>
-      </dependency>
-
-      <!-- Testing -->
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -129,19 +93,6 @@
         <filtering>true</filtering>
       </testResource>
     </testResources>
-
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire-plugin.version}</version>
-      </plugin>
-    </plugins>
   </build>
 
   <profiles>
@@ -152,7 +103,7 @@
           <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>fabric8-maven-plugin</artifactId>
-            <version>${maven-fabric8-plugin.version}</version>
+            <version>${fabric8-maven-plugin.version}</version>
             <configuration>
               <skip>${fabric8.skip}</skip>
             </configuration>
@@ -177,7 +128,6 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
-            <version>${maven-failsafe-plugin.version}</version>
             <configuration>
               <systemPropertyVariables>
                 <app.name>${project.artifactId}</app.name>
