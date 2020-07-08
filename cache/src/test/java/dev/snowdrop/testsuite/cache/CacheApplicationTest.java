@@ -24,7 +24,7 @@ import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.rule.OutputCapture;
+import org.springframework.boot.test.system.OutputCaptureRule;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -32,7 +32,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CacheApplicationTest extends CacheApplicationTestBase {
 
     @Rule
-    public final OutputCapture outputCapture = new OutputCapture();
+    public final OutputCaptureRule outputCapture = new OutputCaptureRule();
 
     @Value("${local.server.port}")
     private int port;
@@ -40,7 +40,6 @@ public class CacheApplicationTest extends CacheApplicationTestBase {
     @Before
     public void setup() {
         RestAssured.baseURI = String.format("http://localhost:%d/user/", port);
-        outputCapture.reset();
     }
 
     @Override
