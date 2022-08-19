@@ -38,12 +38,12 @@
 
     <openjdk18-openshift.version>latest</openjdk18-openshift.version>
     <fabric8.generator.from>
-      registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${openjdk18-openshift.version}
+      registry.access.redhat.com/ubi8/openjdk-11:${openjdk18-openshift.version}
     </fabric8.generator.from>
     <fabric8.skip>true</fabric8.skip>
 
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
   <modules>
